@@ -21,5 +21,4 @@ class Customer(Person):
 
 omri = Employee('omri', 22, 'omri.g', 'omri.g@test.com', 123456, person_type='Employee')
 mayah = Customer('omri', 22, 'omri.g', 'omri.g@test.com', 89879)
-print omri.wallet
-print mayah.wallet
+
