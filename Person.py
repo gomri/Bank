@@ -12,6 +12,11 @@ class Person(object):
 
 
 class Employee(Person):
+    def __init__(self, name, age, username, email, password, wallet=0, salary=100, job=None, person_type=None):
+        super(Employee, self).__init__(name, age, username, email, password, wallet=0, salary=100, job=None, person_type=None)
+        self.saving_account = None
+        self.checkings_account = None
+
     pass
 
 

@@ -41,18 +41,17 @@ class Account(object):
         :param type_of_account: 'Savings_account', 'checkings_account'
         :return: Object
         """
-        if customer.loged_in and amount_to_withdraw <= customer.saving_account_balance:
+        if customer.logged_in:
             if type_of_account == customer.saving_account:
-                if customer.checkings_account_balance > self.withdraw_saving_account_fee:
-                    customer.checkings_account_balance - self.withdraw_saving_account_fee
-                    customer.saving_account_balance -= amount_to_withdraw
+                if customer.saving_account_balance > self.withdraw_saving_account_fee and amount_to_withdraw <= customer.saving_account_balance:
+                    customer.saving_account_balance -= (self.withdraw_saving_account_fee + amount_to_withdraw)
                     customer.wallet += amount_to_withdraw
                     return customer
                 else:
                     print 'You were unable to pay the withdraw fee'
             elif type_of_account == customer.checkings_account:
-                if amount_to_withdraw <= customer.checkings_account_balance:
-                    customer.checkings_acount_balance -= amount_to_withdraw
+                if amount_to_withdraw < customer.checkings_account_balance:
+                    customer.checkings_account_balance -= amount_to_withdraw
                     customer.wallet += amount_to_withdraw
                     return customer
 
@@ -64,7 +63,7 @@ class Account(object):
         :param amount_to_deposit: Int
         :param type_of_account: 'Savings_account', 'checkings_account'
         """
-        if customer.loged_in:
+        if customer.logged_in:
             if type_of_account == customer.checkings_account:
                 customer.checkings_account_balance += amount_to_deposit
             elif type_of_account == customer.saving_account:
@@ -79,11 +78,11 @@ class Account(object):
         :param customer: Object
         :param type_of_account: 'Savings_account', 'checkings_account'
         """
-        if customer.loged_in:
+        if customer.logged_in:
             if type_of_account == customer.saving_account:
                 print "You have {} $'s in your Saving account".format(customer.saving_account_balance)
             elif type_of_account == customer.checkings_account:
-                print "You have {} $'s in your checking account".format(customer.Checkings_account_balance)
+                print "You have {} $'s in your checking account".format(customer.checkings_account_balance)
 
 
 
@@ -96,11 +95,14 @@ omri = Employee('omri',19,'omri.g','omri.g@goroomer.com','123456',person_type='E
 # print type(omri.username)
 #
 bank_of_israel_accouts = Account(omri,22)
-# bank_of_israel_accouts.login(omri)
-# print omri.logged_in
-#
-#
-#
+bank_of_israel_accouts.login(omri)
+print omri.logged_in
+
+bank_of_israel_accouts.deposit(omri,50,omri.saving_account)
+bank_of_israel_accouts.show_balance(omri,omri.saving_account)
+bank_of_israel_accouts.withdraw(omri,20,omri.saving_account)
+print omri.wallet
+bank_of_israel_accouts.show_balance(omri,omri.saving_account)
 # bank_israel._add_person_to_list(bank_israel.list_of_employees,omri)
 # print bank_israel.list_of_employees
 
