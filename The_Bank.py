@@ -1,10 +1,9 @@
 from Person import Employee, Customer
-
+from validations import Validations
 
 class Bank(object):
     def __init__(self):
         self.list_of_customers = []
-        self.accounts = []
         self.list_of_employees = []
 
     def _add_person_to_list(self, alist, person):
@@ -31,7 +30,7 @@ class Bank(object):
 
     def find_employee(self, employee):
         self._check_if_is_employee_of_bank(employee)
-        print employee
+        return employee
 
 
 
@@ -105,24 +104,3 @@ class Account(object):
                 print "You have {} $'s in your checking account".format(customer.checkings_account_balance)
 
 
-bank_israel = Bank()
-omri = Employee('omri', 22, 'omri.g', 'omri.g@goroomer.com', '123456', person_type='Employee')
-mayah = Employee('mayah', 25, 'mayah', 'mayah@goroomer.com', '789456', person_type='Employee')
-
-bank_of_israel_accounts = Account(omri, 22)
-# bank_of_israel_accounts.login(omri)
-# print omri.logged_in
-
-# bank_of_israel_accouts.deposit(omri,50,omri.saving_account)
-# bank_of_israel_accouts.show_balance(omri,omri.saving_account)
-# bank_of_israel_accouts.withdraw(omri,20,omri.saving_account)
-# print omri.wallet
-# bank_of_israel_accouts.show_balance(omri,omri.saving_account)
-bank_israel._add_person_to_list(bank_israel.list_of_employees, omri)
-bank_israel._add_person_to_list(bank_israel.list_of_employees, mayah)
-bank_israel.fire_employee(mayah)
-bank_israel.give_raise(omri, 20)
-bank_israel.find_employee(mayah)
-
-for employee in range(len(bank_israel.list_of_employees)):
-    print bank_israel.list_of_employees[employee].salary
