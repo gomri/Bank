@@ -1,8 +1,9 @@
 from Person import Employee, Customer
 
+
 class Bank(object):
     def __init__(self):
-        self.customer = []
+        self.list_of_customers = []
         self.accounts = []
         self.list_of_employees = []
 
@@ -10,12 +11,32 @@ class Bank(object):
         alist.append(person)
         return alist
 
+    def _check_if_is_employee_of_bank(self, employee):
+        if employee in self.list_of_employees:
+            return employee
+        else:
+            print "Can't do that action because {} is not an employee of the bank".format(employee.name)
+
     def pay_employee(self, employee):
-        employee.salary += employee.wallet
+        self._check_if_is_employee_of_bank()
+        employee.salary += employee.checkings_account
+
+    def fire_employee(self, employee):
+        self._check_if_is_employee_of_bank(employee)
+        self.list_of_employees.remove(employee)
+
+    def give_raise(self, employee, amoumt_to_raise):
+        self._check_if_is_employee_of_bank(employee)
+        employee.salary += amoumt_to_raise
+
+    def find_employee(self, employee):
+        self._check_if_is_employee_of_bank(employee)
+        print employee
+
 
 
 class Account(object):
-    def __init__(self,customer, account_number):
+    def __init__(self, customer, account_number):
         self.withdraw_saving_account_fee = 2
         customer.account_number = account_number
         customer.saving_account_balance = 0
@@ -23,8 +44,7 @@ class Account(object):
         customer.checkings_account = 'Checkings_account'
         customer.saving_account = 'Savings_account'
 
-
-    def login(self, customer,):
+    def login(self, customer, ):
         username = raw_input("Enter you'r Username: ")
         password = raw_input("Enter you'r Password: ")
         if customer.username == username and customer.password == password:
@@ -85,24 +105,24 @@ class Account(object):
                 print "You have {} $'s in your checking account".format(customer.checkings_account_balance)
 
 
-
-
 bank_israel = Bank()
-omri = Employee('omri',19,'omri.g','omri.g@goroomer.com','123456',person_type='Employee')
+omri = Employee('omri', 22, 'omri.g', 'omri.g@goroomer.com', '123456', person_type='Employee')
+mayah = Employee('mayah', 25, 'mayah', 'mayah@goroomer.com', '789456', person_type='Employee')
+
+bank_of_israel_accounts = Account(omri, 22)
+# bank_of_israel_accounts.login(omri)
+# print omri.logged_in
+
+# bank_of_israel_accouts.deposit(omri,50,omri.saving_account)
+# bank_of_israel_accouts.show_balance(omri,omri.saving_account)
+# bank_of_israel_accouts.withdraw(omri,20,omri.saving_account)
 # print omri.wallet
-# print omri.salary
-# print type(omri.password)
-# print type(omri.username)
-#
-bank_of_israel_accouts = Account(omri,22)
-bank_of_israel_accouts.login(omri)
-print omri.logged_in
+# bank_of_israel_accouts.show_balance(omri,omri.saving_account)
+bank_israel._add_person_to_list(bank_israel.list_of_employees, omri)
+bank_israel._add_person_to_list(bank_israel.list_of_employees, mayah)
+bank_israel.fire_employee(mayah)
+bank_israel.give_raise(omri, 20)
+bank_israel.find_employee(mayah)
 
-bank_of_israel_accouts.deposit(omri,50,omri.saving_account)
-bank_of_israel_accouts.show_balance(omri,omri.saving_account)
-bank_of_israel_accouts.withdraw(omri,20,omri.saving_account)
-print omri.wallet
-bank_of_israel_accouts.show_balance(omri,omri.saving_account)
-# bank_israel._add_person_to_list(bank_israel.list_of_employees,omri)
-# print bank_israel.list_of_employees
-
+for employee in range(len(bank_israel.list_of_employees)):
+    print bank_israel.list_of_employees[employee].salary
