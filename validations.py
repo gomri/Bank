@@ -16,7 +16,10 @@ class Validations(object):
 
         counter = 0
         while counter < 3:
-            username = raw_input('Enter a Username: ')
+            #########username = raw_input('Enter a Username: ')
+
+            username = 'Test.g24!'    
+
             # calculating the length
             length_error = len(username) < 6
 
@@ -59,7 +62,10 @@ class Validations(object):
         """
         counter = 0
         while counter < 3:
-            password = raw_input('Enter a password: ')
+            #################password = raw_input('Enter a password: ')
+
+            password = 'Test.g24!'
+
             # calculating the length
             length_error = len(password) < 8
 

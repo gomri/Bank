@@ -40,9 +40,10 @@ class Customer(Person):
     def __init__(self, name, age, email):
         super(Customer, self).__init__(name, age, email, person_type='Customer')
 
-omri = Employee('omri', 22, 'omri.g@test.com')
-mayah = Customer('omri', 22, 'omri.g@test.com')
-print omri.salary
-print omri.wallet
-print omri.person_type
-print mayah.person_type
+
+# omri = Employee('omri', 22, 'omri.g@test.com')
+# mayah = Customer('omri', 22, 'omri.g@test.com')
+# print omri.salary
+# print omri.wallet
+# print omri.person_type
+# print mayah.person_type

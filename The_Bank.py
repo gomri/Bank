@@ -10,26 +10,19 @@ class Bank(object):
         alist.append(person)
         return alist
 
-    def _check_if_is_employee_of_bank(self, employee):
-        if employee in self.list_of_employees:
-            return employee
-        else:
-            print "Can't do that action because {} is not an employee of the bank".format(employee.name)
-
     def pay_employee(self, employee):
-        self._check_if_is_employee_of_bank()
-        employee.salary += employee.checkings_account
+        employee.salary += employee.wallet
+        return employee
 
     def fire_employee(self, employee):
-        self._check_if_is_employee_of_bank(employee)
         self.list_of_employees.remove(employee)
+        return employee
 
     def give_raise(self, employee, amoumt_to_raise):
-        self._check_if_is_employee_of_bank(employee)
         employee.salary += amoumt_to_raise
+        return employee
 
     def find_employee(self, employee):
-        self._check_if_is_employee_of_bank(employee)
         return employee
 
 
@@ -69,7 +62,7 @@ class Account(object):
                 else:
                     print 'You were unable to pay the withdraw fee'
             elif type_of_account == customer.checkings_account:
-                if amount_to_withdraw < customer.checkings_account_balance:
+                if amount_to_withdraw <=     customer.checkings_account_balance:
                     customer.checkings_account_balance -= amount_to_withdraw
                     customer.wallet += amount_to_withdraw
                     return customer
