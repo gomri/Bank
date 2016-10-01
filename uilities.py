@@ -13,5 +13,3 @@ Bank_managers_options = [
     'C - Check if employee is working for the bank'
 ]
 
-somethingtwo = 'somethingtwo'
-
