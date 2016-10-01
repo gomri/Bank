@@ -12,3 +12,6 @@ Bank_managers_options = [
     'H - Hire employee',
     'C - Check if employee is working for the bank'
 ]
+
+somethingtwo = 'somethingtwo'
+
